@@ -36,8 +36,7 @@ class SiameseTrainData_Omniglot(Dataset):
                 siamese_index, (_, label2) = random.choice(self.imgs)
 
         img2, label2 = self.dataset[siamese_index]
-
-        target = torch.from_numpy(np.array([target], dtype=np.float32))
+        target = torch.from_numpy(np.array([target]))
         return (img1, img2, target)
 
     def __len__(self):
@@ -86,23 +85,23 @@ class SiameseTrainData_ImageFolder(Dataset):
 
     def __init__(self, dataset):
         self.dataset = dataset
+        self.imgs = list(enumerate(self.dataset.imgs))
 
     def __getitem__(self, index):
         target = np.random.randint(0, 2)
         img1, label1 = self.dataset[index]
         if target == 1:
             while True:
-                siamese_index, (_, label2) = random.choice(list(enumerate(self.dataset._flat_character_images)))
+                siamese_index, (_, label2) = random.choice(self.imgs)
                 if label1 == label2:
                     break
         else:
             label2 = label1
             while label2 == label1:
-                siamese_index, (_, label2) = random.choice(list(enumerate(self.dataset._flat_character_images)))
+                siamese_index, (_, label2) = random.choice(self.imgs)
 
         img2, label2 = self.dataset[siamese_index]
-
-        target = torch.from_numpy(np.array([target], dtype=np.float32))
+        target = torch.from_numpy(np.array([target]))
         return (img1, img2, target)
 
     def __len__(self):
@@ -113,6 +112,7 @@ class SiameseTestData_ImageFolder(Dataset):
 
     def __init__(self, dataset, times=200, way=20, seed=0):
         self.dataset = dataset
+        self.imgs = list(enumerate(self.dataset.imgs))
         self.times = times
         self.way = way
         self.seed = seed
@@ -130,16 +130,15 @@ class SiameseTestData_ImageFolder(Dataset):
         if idx == 0:
             self.img1, self.label1 = self.dataset[index]
             while True:
-                siamese_index, (_, label2) = self.rng.choice(list(enumerate(self.dataset._flat_character_images)))
+                siamese_index, (_, label2) = self.rng.choice(self.imgs)
                 if self.label1 == label2:
                     break
         # image from different class
         else:
             label2 = self.label1
             while label2 == self.label1:
-                siamese_index, (_, label2) = self.rng.choice(list(enumerate(self.dataset._flat_character_images)))
-
+                siamese_index, (_, label2) = self.rng.choice(self.imgs)
         img2, label2 = self.dataset[siamese_index]
-
+        # print(self.label1, label2)
         return self.img1, img2
 
