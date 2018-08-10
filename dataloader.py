@@ -90,11 +90,13 @@ class SiameseTrainData_ImageFolder(Dataset):
     def __getitem__(self, index):
         target = np.random.randint(0, 2)
         img1, label1 = self.dataset[index]
-        if target == 1:
+        # same class
+        if target == 1: 
             while True:
                 siamese_index, (_, label2) = random.choice(self.imgs)
                 if label1 == label2:
                     break
+        # different class
         else:
             label2 = label1
             while label2 == label1:
