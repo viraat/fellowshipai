@@ -13,7 +13,7 @@ class ContrastiveLoss(torch.nn.Module):
 
     def forward(self, output1, output2, label):
         """
-        Unlike the paper label == 1 when output1 and output2 are similar
+        label == 1 when output1 and output2 are similar
         and label == 0 when output1 and output2 are dissimilar
         """
         euclidean_distance = F.pairwise_distance(output1, output2)
