@@ -1,6 +1,6 @@
-# Omniglot data set for one-shot learning  
+# Siamese Networks for one-shot learning  
 
-This is a challenge submission for [fellowship.ai](fellowship.ai) cohort 13.
+This is a challenge submission for [fellowship.ai](https://fellowship.ai) cohort 13.
 
 The challenge is to perform 1-shot learning on the [Omniglot dataset](https://github.com/brendenlake/omniglot).
 
@@ -19,7 +19,7 @@ The challenge is to perform 1-shot learning on the [Omniglot dataset](https://gi
 - They report an one-shot classification accuracy of 92% using Siamese ConvNets
 
 ## Solution
-- Attempted to replicate the Siamese ConvNet as proposed by [Koch et. al](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf)
+- Attempted to replicate the Siamese ConvNet as proposed by [Koch et. al](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf). Implementation in [omniglot-kochnet.ipynb](https://github.com/viraat/fellowshipai/blob/master/omniglot-kochnet.ipynb)
 - The background set is split into a train and validation set in [train_test_split.ipynb](https://github.com/viraat/fellowshipai/blob/master/train_test_split.ipynb)
 - Differences include using ADAM optimizer, and training for 100 epochs.
 - Same network architecture is used.
@@ -27,9 +27,10 @@ The challenge is to perform 1-shot learning on the [Omniglot dataset](https://gi
 - **A test set 20-way one-shot classification accuracy of 83.3% was achieved. Results are in the [kochnet_test.ipynb](https://github.com/viraat/fellowshipai/blob/master/kochnet_test.ipynb)**
 
 ## Possible improvements
+- Retraining of the KochNet implementation by combining both the validation and training dataset.
 - Attempted use of the [contrastive loss](http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf) function which is in the [omniglot-contrastive.ipynb](https://github.com/viraat/fellowshipai/blob/master/omniglot-contrastive.ipynb)
 - The training was slow to converge to a good solution. Likely due to the fact that the randomly generated positive and negative pairs were not contributing to the loss. Could improve this by using an online pair generation method.
-- Training for a longer time with online pair generation will likely result in better performance. 
+- Training for a longer time with online pair generation will likely result in better performance.
 <!--
 ## Challenge goals
 1. Problem solving ability - did you understand the problem correctly, and did you take logical steps to solve it?  
