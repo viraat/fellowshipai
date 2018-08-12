@@ -11,7 +11,7 @@ The challenge is to perform 1-shot learning on the [Omniglot dataset](https://gi
 - It is split into "background" and "evaluation" sets of 30 and 20 alphabets respectively.
 - Task is to do one-shot classification on the evaluation set after learning on the background set
 - For our purposes, we use only the image data and ignore the stroke data.
-- Some basic exploration, 1-NN experiment and demo run given in the dataset are in the [explore dataset](https://github.com/viraat/fellowshipai/blob/master/explore_dataset.ipynb) notebook.
+- Some basic exploration, 1-NN experiment and demo run from dataset authors using a distance metric are in the [explore dataset](https://github.com/viraat/fellowshipai/blob/master/explore_dataset.ipynb) notebook.
 
 ## Existing solutions
 - [Lake et. al](http://science.sciencemag.org/content/350/6266/1332) use Bayesian Program learning to achieve an error rate < 5% on the 20-way one-shot classification task. This method makes use of the stroke information. For a Siamese ConvNet they report an error of < 10%.
